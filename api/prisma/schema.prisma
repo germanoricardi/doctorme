@@ -44,4 +44,16 @@ model Doctor {
   attendances  Int
   address      String
   createdAt    DateTime @default(now())
+
+  agenda Agenda[]
+}
+
+model Agenda {
+  id        Int      @id @default(autoincrement())
+  doctorId  Int
+  date      DateTime
+  available Boolean  @default(true)
+  createdAt DateTime @default(now())
+
+  doctor Doctor @relation(fields: [doctorId], references: [id])
 }
