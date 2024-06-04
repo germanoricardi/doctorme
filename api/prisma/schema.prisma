@@ -15,4 +15,16 @@ model User {
   phone     String   @unique
   password  String
   createdAt DateTime @default(now())
+
+  patient Patient?
+}
+
+model Patient {
+  id        Int      @id @default(autoincrement())
+  userId    Int      @unique
+  name      String   @unique
+  phone     String   @unique
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
 }
